@@ -152,9 +152,9 @@ def create_index_from_text(markdown):
 def main():
 
     st.markdown("<div style='text-align:center;'> <img style='width:340px;' src='https://www.ipenclosures.com.au/wp-content/uploads/IP-EnclosuresNZ-Logo-.png.webp' /></div>", unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align:center;'>Ipen Closures AI Assistant</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align:center;'>IP Enclosures AI Assistant</h1>", unsafe_allow_html=True)
 
-    st.markdown("<p style='text-align:center;'>Welcome to Ipen Closures AI Assistant! Please feel free to ask any question.</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align:center;'>Welcome to IP Enclosures AI Assistant! Please feel free to ask any question.</p>", unsafe_allow_html=True)
 
     # Set up memory
     msgs = StreamlitChatMessageHistory(key="langchain_messages")
@@ -182,7 +182,7 @@ def main():
     
     template += docs
     
-    template += """You are an AI chatbot for Ipen Closures having a conversation with a human. 
+    template += """You are an AI chatbot for IP Enclosures having a conversation with a human. 
     Please follow the following instructions:
        
     - BEFORE ANSWERING THE QUESTION, ASK A FOLLOW UP QUESTION.
