@@ -151,10 +151,10 @@ def create_index_from_text(markdown):
 
 def main():
 
-    st.markdown("<div style='text-align:center;'> <img style='width:340px;' src='https://ardex.co.uk/wp-content/uploads/ardex-logo.png' /></div>", unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align:center;'>ARDEX AI Assistant</h1>", unsafe_allow_html=True)
+    st.markdown("<div style='text-align:center;'> <img style='width:340px;' src='https://www.ipenclosures.com.au/wp-content/uploads/IP-EnclosuresNZ-Logo-.png.webp' /></div>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align:center;'>Ipen Closures AI Assistant</h1>", unsafe_allow_html=True)
 
-    st.markdown("<p style='text-align:center;'>Welcome to ARDEX AI Assistant! Please feel free to ask any question.</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align:center;'>Welcome to Ipen Closures AI Assistant! Please feel free to ask any question.</p>", unsafe_allow_html=True)
 
     # Set up memory
     msgs = StreamlitChatMessageHistory(key="langchain_messages")
@@ -166,8 +166,8 @@ def main():
     
     # Set up the LLMChain, passing in memory
     
-    url = "https://ardexaustralia.com/"
-    query = "ARDEX"
+    url = "https://www.ipenclosures.com.au/electrical-enclosures/"
+    query = "Electrical"
     markdown = get_markdown_from_url(url)
     index = create_index_from_text(markdown)
         
@@ -182,7 +182,7 @@ def main():
     
     template += docs
     
-    template += """You are an AI chatbot for ARDEX having a conversation with a human. 
+    template += """You are an AI chatbot for Ipen Closures having a conversation with a human. 
     Please follow the following instructions:
        
     - BEFORE ANSWERING THE QUESTION, ASK A FOLLOW UP QUESTION.
@@ -197,31 +197,11 @@ def main():
     
     - If suitable to the answer, provide any recommendations to products.
     
-    - If suitable to the answer, provide recommendations for training sessions provided by ARDEX.
-    
     - FORMAT YOUR ANSWER IN MARKDOWN
     
     - ALWAYS ASK FOLLOW UP QUESTIONS!
 
     - SHOW RELEVANT IMAGES OF PRODUCTS
-
-    Please consider the following guidelines:
-    A common question is what the best way is to tile a swimming pool. Now while this may sound like a straightforward question, there are a lot of considerations depending on the type of application or the type of pool.
-
-     
-
-    Some of the considerations and what the bot ideally should ask are some of the following questions:
-
-     
-
-    What type of pool is it?
-    I. e. concrete, fibreglass, shotcrete, etc?
-    Is it going to be freshwater or saltwater?
-    What type of tile is going to be used?
-     
-
-    Depending on the above, it can be any number of products used and different types of applications that need to be considered. Below are some links to the type of documentation that we have:
-
 
     {history}
     Human: {human_input}
