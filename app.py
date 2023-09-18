@@ -2,22 +2,27 @@ import requests
 import json
 import os
 import html2text
+import streamlit as st
 
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
+from PyPDF2 import PdfReader
 
 from llama_index import Document
 from llama_index import VectorStoreIndex
 from llama_index.node_parser import SimpleNodeParser
 from llama_index.text_splitter import TokenTextSplitter
 
+from langchain.text_splitter import CharacterTextSplitter
+from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
 from langchain.chains import LLMChain
-from langchain.llms import OpenAI
+from langchain.llms import OpenAI, HuggingFaceHub
 from langchain.memory import ConversationBufferMemory
 from langchain.memory.chat_message_histories import StreamlitChatMessageHistory
 from langchain.prompts import PromptTemplate
-import streamlit as st
 
+
+openai_api_key = os.getenv("OPENAI_API_KEY")
 browserless_api_key = os.getenv("BROWSERLESS_API_KEY")
 
 # 1. Scrape raw HTML
@@ -148,6 +153,33 @@ def create_index_from_text(markdown):
     return index
 
 
+def get_pdf_text(pdf_docs):
+    text = ""
+    for pdf in pdf_docs:
+        pdf_reader = PdfReader(pdf)
+        for page in pdf_reader.pages:
+            text += page.extract_text()
+    return text
+
+
+def get_text_chunks(text):
+    text_splitter = CharacterTextSplitter(
+        separator="\n",
+        chunk_size=1000,
+        chunk_overlap=200,
+        length_function=len
+    )
+    chunks = text_splitter.split_text(text)
+    return chunks
+
+
+def get_vectorstore(text_chunks):
+    embeddings = OpenAIEmbeddings()
+    # embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
+    vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
+    return vectorstore
+
+
 
 def main():
 
@@ -162,8 +194,6 @@ def main():
     if len(msgs.messages) == 0:
         msgs.add_ai_message("How can I help you?")
 
-    openai_api_key = os.getenv("OPENAI_API_KEY")
-    
     # Set up the LLMChain, passing in memory
     
     url = "https://www.ipenclosures.com.au/electrical-enclosures/"
