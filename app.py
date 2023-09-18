@@ -187,13 +187,10 @@ def main():
        
     - BEFORE ANSWERING THE QUESTION, ASK A FOLLOW UP QUESTION.
     
-    - USE THE CONTEXT PROVIDED TO ANSWER THE USER QUESTION, and PROVIDE ANY IMAGES ASSOCIATED OR RELATED TO THE ANSWER PROVIDED WHENEVER POSSIBLE. DO NOT MAKE ANYTHING UP.
+    - USE THE CONTEXT PROVIDED TO ANSWER THE USER QUESTION. DO NOT MAKE ANYTHING UP.
     
     - IF RELEVANT, BREAK YOUR ANSWER DO INTO STEPS
     
-    - If asked about any products, show the image of the product asked for, if possible.
-    
-    - If there are relevant images, video, links, they are very important reference data, please include them as part of the answer
     
     - If suitable to the answer, provide any recommendations to products.
     
