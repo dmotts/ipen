@@ -2,7 +2,7 @@ html2text
 openai
 streamlit
 llama_index
-langchain==0.0.184
+langchain
 PyPDF2==3.0.1
 streamlit==1.18.1
 openai==0.27.6
