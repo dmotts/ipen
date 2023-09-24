@@ -55,15 +55,18 @@ def main():
         docs_directory = os.path.join(os.getcwd(), 'docs')  # Use absolute path to 'docs' directory
         pdf_files = glob.glob(os.path.join(docs_directory, '*.pdf'))
 
-        st.session_state.docs_processed = False  # Initialize docs_processed
+        if "docs_processed" not in st.session_state:
+            st.session_state.docs_processed = False
+            
+        if not st.session_state.docs_processed:
+            for pdf_file in pdf_files:
+                with open(pdf_file, 'rb') as file:
+                    # Perform processing on each PDF file
+                    raw_text = get_pdf_text([file])
 
-        for pdf_file in pdf_files:
-            with open(pdf_file, 'rb') as file:
-                # Perform processing on each PDF file
-                raw_text = get_pdf_text([file])
-
-                st.session_state.pdf_text = ''.join(raw_text)
-
+                    st.session_state.pdf_text = ''.join(raw_text)
+                    st.session_state.docs_processed = True 
+        
         url = "https://www.ipenclosures.com.au/electrical-enclosures/"
 
         # Scrap website url and retrieve markdown
