@@ -3,7 +3,7 @@ openai
 streamlit
 llama_index
 langchain
-PyPDF2==3.0.1
+PyPDF2
 streamlit==1.18.1
 openai==0.27.6
 faiss-cpu==1.7.4
