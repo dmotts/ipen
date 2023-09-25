@@ -110,6 +110,8 @@ def main():
 
             - SHOW RELEVANT IMAGES OF PRODUCTS
 
+            - DO NOT MAKE ANYTHING UP            
+            
             {history}
             Human: {human_input}
             AI: """
