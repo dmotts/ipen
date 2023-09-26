@@ -82,7 +82,7 @@ def main():
         st.chat_message("human").write(query)
 
         with st.chat_message('ai'):
-            with st.spinner('Thinking...'):
+            with st.spinner('Scanning data...'):
                 # Process PDF documents
                 docs_directory = os.path.join(os.getcwd(), 'docs')  # Use absolute path to 'docs' directory
                 pdf_files = glob.glob(os.path.join(docs_directory, '*.pdf'))
@@ -98,6 +98,8 @@ def main():
 
                             st.session_state.pdf_text = ''.join(raw_text)
                             st.session_state.docs_processed = True 
+
+            with st.spinner('Thinking...'):
 
                 # Scrap website url and retrieve markdown
                 markdown = get_markdown_from_url(url)
